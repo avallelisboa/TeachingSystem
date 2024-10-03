@@ -9,6 +9,8 @@
         "vlucas/phpdotenv": "^5.6",
         "monolog/monolog": "^3.7",
         "respect/validation": "^2.3",
-        "php-di/php-di": "^7.0"
+        "php-di/php-di": "^7.0",
+        "psr/http-message": "^1.0",
+        "klein/klein": "^2.1"
     }
 }

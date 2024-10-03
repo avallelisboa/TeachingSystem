@@ -1,6 +1,7 @@
 <?php
+require_once('../../Interfaces/IPaymentService.php');
 
-class MockPaymentService extends IPaymentService{
+class MockPaymentService implements IPaymentService{
     public function charge($amount, $currency, $customerData){
         
     }

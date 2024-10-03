@@ -24,7 +24,12 @@
 
         <!-- Submit Button -->
         <button type="submit" class="btn btn-primary btn-block">Login</button>
-    </form>
+        <?php 
+            if(isset($_COOKIE["loginErrorMessage"])){
+                echo "<p class=\"alert alert-danger\">".$_COOKIE["loginErrorMessage"]."</>";
+            }
+        ?>
+    </form>    
 
     <div id="response" class="mt-3"></div>
     <!-- JavaScript for Custom HTML5 Validation Messages -->
