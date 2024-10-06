@@ -1,5 +1,5 @@
 <?php
-require_once('../Models/ActionResult.php');
+require_once('./ServiceLayer/Models/ActionResult.php');
 interface ISessionService{
     public function login($username, $password):ActionResult;
     public function isLogged():bool;

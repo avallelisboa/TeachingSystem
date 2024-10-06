@@ -4,26 +4,26 @@ require_once __DIR__ . '/vendor/autoload.php';
 require_once('./PresentationLayer/Controllers/LoginController.php');
 require_once('./PresentationLayer/Controllers/RegisterController.php');
 
-require_once('./ServiceLayer/Factories/SessionServiceFactory.php');
 require_once('./ServiceLayer/Interfaces/ISessionService.php');
+require_once('./ServiceLayer/Factories/SessionServiceFactory.php');
 
 
 $klein = new \Klein\Klein();
 
 //GET
 $klein->respond('GET', '/', function ($request,$response,$service, $app) {
-    $service->render('/PresentationLayer/Views/Home.php');
+    $service->render('./PresentationLayer/Views/Home.php');
 });
 $klein->respond('GET', '/login', function ($request,$response,$service, $app) {
-    $service->render('/PresentationLayer/Views/Login.php');
+    $service->render('./PresentationLayer/Views/Login.php');
 });
 $klein->respond('GET', '/register', function ($request,$response,$service, $app) {
-    $service->render('/PresentationLayer/Views/Register.php');
+    $service->render('./PresentationLayer/Views/Register.php');
 });
 $klein->respond('GET','/main', function ($request,$response,$service, $app) {
     $sessionService = SessionServiceFactory::getSessionService($_ENV['SESSION_SERVICE']);
     if($sessionService->isLogged())
-        $service->render('/PresentationLayer/Views/UserMainPage.php');
+        $service->render('./PresentationLayer/Views/UserMainPage.php');
     else header("Location: /");
 });
 //POST

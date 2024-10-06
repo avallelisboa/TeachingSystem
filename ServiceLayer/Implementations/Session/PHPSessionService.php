@@ -1,7 +1,7 @@
 <?php
-require_once('../../Models/ActionResult.php');
-require_once('../../Interfaces/ISessionService.php');
-require_once("../../../BusinessLayer/BusinessLogic/SessionBL.php");
+require_once('./ServiceLayer/Models/ActionResult.php');
+require_once('./ServiceLayer/Interfaces/ISessionService.php');
+require_once("./BusinessLayer/BusinessLogic/SessionBL.php");
 class PHPSessionService implements ISessionService{
     public function login($username, $password): ActionResult{
         $validationResult = isLoginValid($username, $password);

@@ -1,6 +1,6 @@
 <?php
-require_once('../Interfaces/IPaymentsService.php');
-require_once('../Implementations/Session/PHPSessionService.php');
+require_once './ServiceLayer/Interfaces/IPaymentService.php';
+require_once './ServiceLayer/Implementations/Session/PHPSessionService.php';
 class SessionServiceFactory {
     public static function getSessionService($method) : ISessionService{
         switch ($method) {
