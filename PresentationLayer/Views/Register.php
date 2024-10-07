@@ -4,11 +4,11 @@
 <body>
 <div class="container mt-5">
     <h2 class="text-center mb-4">Register</h2>
-    <form id="registerForm" novalidate>
+    <form id="registerForm" method="POST" action="/register" novalidate>
         <!-- First Name -->
         <div class="form-group">
-            <label for="first_name">First Name</label>
-            <input type="text" class="form-control" id="first_name" name="first_name" 
+            <label for="firstName">First Name</label>
+            <input type="text" class="form-control" id="firstName" name="firstName" 
                    required pattern="[A-Za-z]+" 
                    placeholder="Enter your first name">
             <div class="invalid-feedback">Please provide a valid first name.</div>
@@ -17,7 +17,7 @@
         <!-- Last Name -->
         <div class="form-group">
             <label for="last_name">Last Name</label>
-            <input type="text" class="form-control" id="last_name" name="last_name" 
+            <input type="text" class="form-control" id="lastName" name="lastName" 
                    required pattern="[A-Za-z]+" 
                    placeholder="Enter your last name">
             <div class="invalid-feedback">Please provide a valid last name.</div>
@@ -39,15 +39,12 @@
                    placeholder="Enter your password">
             <div class="invalid-feedback">Password must be at least 6 characters long.</div>
         </div>
-
-        <!-- Role (Student/Teacher) -->
+        <!-- Verify Password -->
         <div class="form-group">
-            <label for="role">Role</label>
-            <select class="form-control" id="role" name="role[]" multiple required>
-                <option value="student">Student</option>
-                <option value="teacher">Teacher</option>
-            </select>
-            <div class="invalid-feedback">Please select at least one role.</div>
+            <label for="verifyPassword">Password</label>
+            <input type="password" class="form-control" id="verifyPassword" 
+                   placeholder="Verify your password">
+            <div class="invalid-feedback">The passwords do not match.</div>
         </div>
 
         <!-- Submit Button -->
@@ -88,19 +85,19 @@
 
             // Custom error messages
             if (input.validity.valueMissing) {
-                if (input.name === 'first_name') {
+                if (input.name === 'firstName') {
                     input.setCustomValidity('Please enter your first name.');
-                } else if (input.name === 'last_name') {
+                } else if (input.name === 'lastName') {
                     input.setCustomValidity('Please enter your last name.');
                 } else if (input.name === 'email') {
                     input.setCustomValidity('Please enter your email.');
                 } else if (input.name === 'password') {
                     input.setCustomValidity('Please enter your password.');
-                } else if (input.name === 'role[]') {
-                    input.setCustomValidity('Please select at least one role.');
+                } else if(input.name === 'verifyPassword'){
+                    input.setCustomValidity('Please verify your password.');
                 }
             } else if (input.validity.patternMismatch) {
-                if (input.name === 'first_name' || input.name === 'last_name') {
+                if (input.name === 'firstName' || input.name === 'lastName') {
                     input.setCustomValidity('Only letters are allowed.');
                 }
             } else if (input.validity.typeMismatch) {

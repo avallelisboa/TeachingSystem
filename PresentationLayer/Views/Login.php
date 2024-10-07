@@ -4,7 +4,7 @@
 <body>
 <div class="container mt-5">
     <h2 class="text-center mb-4">Login</h2>
-    <form id="loginForm" novalidate>
+    <form id="loginForm" method="POST" action="/login" novalidate>
         <!-- Email -->
         <div class="form-group">
             <label for="email">Email</label>

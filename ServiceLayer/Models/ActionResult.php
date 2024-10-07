@@ -7,4 +7,10 @@ class ActionResult{
     }
     public $isValid;
     public $message;
+    public function GetIsValid(){
+        return $this->isValid;
+    }
+    public function GetMessage(){
+        return $this->message;
+    }
 }
