@@ -2,57 +2,60 @@
 <html lang="es">
 <?php require_once("./PresentationLayer/Views/Shared/head.php") ?>
 <body>
-<div class="container mt-5">
-    <h2 class="text-center mb-4">Register</h2>
-    <form id="registerForm" method="POST" action="/register" novalidate>
-        <!-- First Name -->
-        <div class="form-group">
-            <label for="firstName">First Name</label>
-            <input type="text" class="form-control" id="firstName" name="firstName" 
-                   required pattern="[A-Za-z]+" 
-                   placeholder="Enter your first name">
-            <div class="invalid-feedback">Please provide a valid first name.</div>
-        </div>
+<main class="container">
+    <section class="row justify-content-center">
+        <h2 class="col-12 text-center">Register</h2>
+        <form class="col-12 col-sm-10 col-md-8 container-fluid" id="registerForm" method="POST" action="/register" novalidate>
+            <!-- First Name -->
+            <fieldset class="form-group">
+                <label for="firstName">First Name</label>
+                <input type="text" class="form-control" id="firstName" name="firstName" 
+                    required pattern="[A-Za-z]+" 
+                    placeholder="Enter your first name">
+                <p class="invalid-feedback">Please provide a valid first name.</p>
+            </fieldset>
 
-        <!-- Last Name -->
-        <div class="form-group">
-            <label for="last_name">Last Name</label>
-            <input type="text" class="form-control" id="lastName" name="lastName" 
-                   required pattern="[A-Za-z]+" 
-                   placeholder="Enter your last name">
-            <div class="invalid-feedback">Please provide a valid last name.</div>
-        </div>
+            <!-- Last Name -->
+            <fieldset class="form-group">
+                <label for="last_name">Last Name</label>
+                <input type="text" class="form-control" id="lastName" name="lastName" 
+                    required pattern="[A-Za-z]+" 
+                    placeholder="Enter your last name">
+                <p class="invalid-feedback">Please provide a valid last name.</p>
+            </fieldset>
 
-        <!-- Email -->
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" class="form-control" id="email" name="email" 
-                   required placeholder="Enter your email">
-            <div class="invalid-feedback">Please provide a valid email address.</div>
-        </div>
+            <!-- Email -->
+            <fieldset class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" name="email" 
+                    required placeholder="Enter your email">
+                <p class="invalid-feedback">Please provide a valid email address.</p>
+            </fieldset>
 
-        <!-- Password -->
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" class="form-control" id="password" name="password" 
-                   required minlength="6" 
-                   placeholder="Enter your password">
-            <div class="invalid-feedback">Password must be at least 6 characters long.</div>
-        </div>
-        <!-- Verify Password -->
-        <div class="form-group">
-            <label for="verifyPassword">Password</label>
-            <input type="password" class="form-control" id="verifyPassword" 
-                   placeholder="Verify your password">
-            <div class="invalid-feedback">The passwords do not match.</div>
-        </div>
+            <!-- Password -->
+            <fieldset class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" name="password" 
+                    required minlength="6" 
+                    placeholder="Enter your password">
+                <p class="invalid-feedback">Password must be at least 6 characters long.</p>
+            </fielset>
+            <!-- Verify Password -->
+            <fieldset class="form-group">
+                <label for="verifyPassword">Verify password</label>
+                <input type="password" class="form-control" id="verifyPassword" 
+                    placeholder="Verify your password">
+                <p class="invalid-feedback">The passwords do not match.</p>
+            </fieldset>
 
-        <!-- Submit Button -->
-        <button type="submit" class="btn btn-primary btn-block">Register</button>
-    </form>
-
-    <div id="response" class="mt-3"></div>
-</div>
+            <!-- Submit Button -->
+             <fieldset class="row justify-content-start">
+                 <button type="submit" class="ml-3 btn btn-primary btn-block col-6 col-sm-5 col-md-4">Register</button>
+             </fieldset>
+        </form>
+        <p id="response" class="mt-3"></p>
+    </section>
+</s>
 <!-- JavaScript for Custom HTML5 Validation Messages -->
 <script>
     (function() {

@@ -2,36 +2,40 @@
 <html lang="es">
 <?php require_once("./PresentationLayer/Views/Shared/head.php") ?>
 <body>
-<div class="container mt-5">
-    <h2 class="text-center mb-4">Login</h2>
-    <form id="loginForm" method="POST" action="/login" novalidate>
-        <!-- Email -->
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" class="form-control" id="email" name="email" 
-                    required placeholder="Enter your email">
-            <div class="invalid-feedback">Please provide a valid email address.</div>
-        </div>
+<main class="container">
+    <section class="row justify-content-center">
+        <h2 class="col-12 text-center">Login</h2>
+        <form class="col-12 col-sm-10 col-md-8 container-fluid" id="loginForm" method="POST" action="/login" novalidate>
+            <!-- Email -->
+            <fieldset class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" name="email" 
+                        required placeholder="Enter your email">
+                <p class="invalid-feedback">Please provide a valid email address.</p>
+            </fieldset>
 
-        <!-- Password -->
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" class="form-control" id="password" name="password" 
-                    required minlength="6" 
-                    placeholder="Enter your password">
-            <div class="invalid-feedback">Password must be at least 6 characters long.</div>
-        </div>
+            <!-- Password -->
+            <fieldset class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" name="password" 
+                        required minlength="6" 
+                        placeholder="Enter your password">
+                <p class="invalid-feedback">Password must be at least 6 characters long.</p>
+            </fieldset>
 
-        <!-- Submit Button -->
-        <button type="submit" class="btn btn-primary btn-block">Login</button>
-        <?php 
-            if(isset($_COOKIE["loginErrorMessage"])){
-                echo "<p class=\"alert alert-danger\">".$_COOKIE["loginErrorMessage"]."</>";
-            }
-        ?>
-    </form>    
+            <!-- Submit Button -->
+             <fieldset class="form-group row justify-content-start">
+                 <button type="submit" class="ml-3 btn btn-primary btn-block col-6 col-sm-5 col-md-4">Login</button>
+             </fieldset>
+            <?php 
+                if(isset($_COOKIE["loginErrorMessage"])){
+                    echo "<p class=\"alert alert-danger\">".$_COOKIE["loginErrorMessage"]."</>";
+                }
+            ?>
+        </form>    
 
-    <div id="response" class="mt-3"></div>
+        <p id="response" class="mt-3"></p>
+    </section>
     <!-- JavaScript for Custom HTML5 Validation Messages -->
     <script>
         (function() {
@@ -84,5 +88,5 @@
             }
         })();
     </script>
-</div>
+</main>
 </body>
