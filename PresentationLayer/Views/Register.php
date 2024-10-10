@@ -2,6 +2,7 @@
 <html lang="es">
 <?php require_once("./PresentationLayer/Views/Shared/head.php") ?>
 <body>
+<?php require_once("./PresentationLayer/Views/Shared/header.php") ?>
 <main class="container">
     <section class="row justify-content-center">
         <h2 class="col-12 text-center">Register</h2>
