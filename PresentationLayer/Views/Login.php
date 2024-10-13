@@ -28,11 +28,15 @@
              <fieldset class="form-group row justify-content-start">
                  <button type="submit" class="ml-3 btn btn-primary btn-block col-6 col-sm-5 col-md-4">Login</button>
              </fieldset>
-            <?php 
-                if(isset($_COOKIE["loginErrorMessage"])){
-                    echo "<p class=\"alert alert-danger\">".$_COOKIE["loginErrorMessage"]."</>";
-                }
-            ?>
+             <fieldset>
+                <?php 
+                    if(isset($_COOKIE["loginErrorMessage"])){
+                        echo "<p class=\"alert alert-danger\">".$_COOKIE["loginErrorMessage"]."</>";
+                    }else if(isset($_COOKIE["registerResultMessage"])){
+                        echo "<p class=\"alert alert-success\">".$_COOKIE["registerResultMessage"]."</>";
+                    }
+                ?>
+            </fieldset>
         </form>    
 
         <p id="response" class="mt-3"></p>

@@ -50,9 +50,17 @@
             </fieldset>
 
             <!-- Submit Button -->
-             <fieldset class="row justify-content-start">
-                 <button type="submit" class="ml-3 btn btn-primary btn-block col-6 col-sm-5 col-md-4">Register</button>
-             </fieldset>
+            <fieldset class="row justify-content-start">
+                <button type="submit" class="ml-3 btn btn-primary btn-block col-6 col-sm-5 col-md-4">Register</button>
+            </fieldset>
+            <fieldset>
+                <br>
+                <?php 
+                    if(isset($_COOKIE["registerErrorMessage"])){
+                        echo "<p class=\"alert alert-danger\">".$_COOKIE["registerErrorMessage"]."</>";
+                    }
+                ?>
+            </fieldset>
         </form>
         <p id="response" class="mt-3"></p>
     </section>

@@ -4,12 +4,12 @@ require_once('./ServiceLayer/Interfaces/ISessionService.php');
 require_once("./BusinessLayer/BusinessLogic/SessionBL.php");
 class PHPSessionService implements ISessionService{
     public function register($registerModel):ActionResult{
-        $validationResult = isRegisterValid($registerModel);
+        $validationResult = SessionBL::GetInstance()->IsRegisterValid($registerModel);
         $actionResult = new ActionResult($validationResult->isValid,$validationResult->message);
         return $actionResult;
     }
     public function login($username, $password): ActionResult{
-        $validationResult = isLoginValid($username, $password);
+        $validationResult = SessionBL::GetInstance()->IsLoginValid($username, $password);
         $actionResult = new ActionResult($validationResult->isValid,$validationResult->message);
         if($validationResult->isValid){
             session_start();

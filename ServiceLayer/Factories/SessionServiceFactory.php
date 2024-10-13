@@ -11,7 +11,7 @@ class SessionServiceFactory {
 
                 return self::$phpService;
             default:
-                throw new Exception("Unsupported session methid: $method");
+                throw new Exception("Unsupported session method: $method");
         }
     }
 }

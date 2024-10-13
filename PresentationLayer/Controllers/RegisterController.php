@@ -1,6 +1,8 @@
 <?php
 
 function GetRegisterScreen($request,$response,$service, $app){
+    setcookie("registerErrorMessage",null,time() - 3600);
+    setcookie("registerResultMessage",null,time() - 3600);
     $service->render('./PresentationLayer/Views/Register.php');
 }
 function Register($request, $response,$service, $app){
