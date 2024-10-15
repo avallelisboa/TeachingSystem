@@ -1,6 +1,8 @@
 <?php
 class User{
     private int $id;
+    private string $username;
+    private string $password;
     private string $firstName;
     private string $lastName;
     private string $email;
@@ -18,6 +20,12 @@ class User{
         return $this->id;
     }
 
+    public function getUsername():string{
+        return $this->username;
+    }
+    public function getPassword():string{
+        return $this->password;
+    }
     public function getFullName(): string {
         return $this->firstName . ' ' . $this->lastName;
     }
