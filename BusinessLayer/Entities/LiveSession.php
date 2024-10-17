@@ -1,5 +1,5 @@
 <?php
-class ClassSession {
+class LiveSession {
     private int $id;
     private Lesson $lesson;
     private string $connectionInfo; // WebRTC connection information (SDP, ICE candidates, etc.)
