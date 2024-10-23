@@ -12,12 +12,12 @@ function Register($request, $response,$service, $app){
     $SESSION_SERVICE = $_ENV['SESSION_SERVICE'];
     $sessionService = SessionServiceFactory::getSessionService('php');
 
-    $email = $request->paramsPost()->email;
+    $userName = $request->paramsPost()->userName;
     $firstName = $request->paramsPost()->firstName;
     $lastName = $request->paramsPost()->lastName;
     $email = $request->paramsPost()->email;
     $password = $request->paramsPost()->password;
-    $registerModel = new Register($email,$firstName,$lastName,$email,$password);
+    $registerModel = new Register($userName,$firstName,$lastName,$email,$password);
 
     $result = $sessionService->register($registerModel);
     if($result->isValid){

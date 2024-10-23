@@ -5,23 +5,23 @@
 <?php require_once("./PresentationLayer/Views/Shared/header.php") ?>
 <main class="container">
     <section class="row justify-content-center">
-        <h2 class="col-12 text-center">Login</h2>
-        <form class="col-12 col-sm-10 col-md-8 container-fluid" id="loginForm" method="POST" action="/login" novalidate>
-            <!-- Email -->
+        <h2 class="col-12 text-center">Iniciar Sesión</h2>
+        <form class="col-12 col-sm-10 col-md-8 container-fluid" id="loginForm" method="POST" action="/login">
+            <!-- Usuario -->
             <fieldset class="form-group">
-                <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" name="email" 
-                        required placeholder="Enter your email">
-                <p class="invalid-feedback">Please provide a valid email address.</p>
+                <label for="userName">Usuario</label>
+                <input type="text" class="form-control" id="userName" name="userName" 
+                        minlength="4"maxlength="12"required oninput="validateUser()" placeholder="Ingrese su usuario">
+                <p class="alert alert-danger" id="userNameErrorMessage">El usuario debe contener entre 4 y 12 caracteres.</p>
             </fieldset>
 
             <!-- Password -->
             <fieldset class="form-group">
                 <label for="password">Password</label>
                 <input type="password" class="form-control" id="password" name="password" 
-                        required minlength="6" 
+                        minlength="6" maxlength="50" required oninput="validatePassword()"
                         placeholder="Enter your password">
-                <p class="invalid-feedback">Password must be at least 6 characters long.</p>
+                <p class="alert alert-danger" id="passwordErrorMessage">La contraseña debe tener entre 6 y 50 caracteres</p>
             </fieldset>
 
             <!-- Submit Button -->
@@ -41,57 +41,27 @@
 
         <p id="response" class="mt-3"></p>
     </section>
-    <!-- JavaScript for Custom HTML5 Validation Messages -->
     <script>
-        (function() {
-            'use strict';
-            var form = document.getElementById('loginForm');
-
-            // Set custom validation messages
-            form.addEventListener('submit', function(event) {
-                // Prevent submission if the form is invalid
-                if (!form.checkValidity()) {
-                    event.preventDefault();
-                    event.stopPropagation();
-
-                    // Loop over the form controls and apply custom messages
-                    var inputs = form.elements;
-                    for (var i = 0; i < inputs.length; i++) {
-                        if (inputs[i].checkValidity() === false) {
-                            setCustomMessage(inputs[i]);
-                        }
-                    }
-                }
-
-                form.classList.add('was-validated');
-            }, false);
-
-            // Function to set custom validation messages
-            function setCustomMessage(input) {
-                // Clear previous message if any
-                input.setCustomValidity('');
-
-                // Custom error messages
-                if (input.validity.valueMissing) {
-                    if (input.name === 'email') {
-                        input.setCustomValidity('Please enter your email address.');
-                    } else if (input.name === 'password') {
-                        input.setCustomValidity('Please enter your password.');
-                    }
-                } else if (input.validity.typeMismatch) {
-                    if (input.type === 'email') {
-                        input.setCustomValidity('Please enter a valid email address.');
-                    }
-                } else if (input.validity.tooShort) {
-                    if (input.name === 'password') {
-                        input.setCustomValidity('Password must be at least 6 characters long.');
-                    }
-                }
-
-                // Apply the message to the field if invalid
-                input.reportValidity();
+        function validateUser(){
+            var userName = document.getElementById("userName");
+            var userNameErrorMessage = document.getElementById("userNameErrorMessage");
+            userName.reportValidity();
+            if(userName.validity.tooLong || username.validity.tooShort()){
+                userNameErrorMessage.dispaly = "block";
+            }else{
+                userNameErrorMessage.display = "none";
             }
-        })();
+        }
+        function validatePassword(){
+            var password = document.getElementById("password");
+            var passwordErrorMessage = document.getElementById("passwordErrorMessage");
+            password.reportValidity();
+            if(password.validity.tooLong || password.validity.tooShort()){
+                passwordErrorMessage.display = "block";
+            }else{
+                passwordErrorMessage.dsiplay = "none";
+            }
+        }
     </script>
 </main>
 </body>

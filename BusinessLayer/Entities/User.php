@@ -1,19 +1,24 @@
 <?php
 class User{
     private int $id;
-    private string $username;
-    private string $password;
-    private string $firstName;
-    private string $lastName;
-    private string $email;
-    private array $roles;
+    public string $username;
+    public string $password;
+    public string $firstName;
+    public string $lastName;
+    public string $email;
+    public bool $isStudent;
+    public bool $isTeacher;
 
-    public function __construct(int $id, string $firstName, string $lastName, string $email, array $roles) {
+    
+    public function __construct(int $id, string $userName, string $password, string $firstName, string $lastName, string $email, bool $isStudent, bool $isTeacher) {
         $this->id = $id;
+        $this->username = $userName;
+        $this->password = $password;
         $this->firstName = $firstName;
         $this->lastName = $lastName;
         $this->email = $email;
-        $this->roles = $roles;
+        $this->isStudent = $isStudent;
+        $this->isTeacher = $isTeacher;
     }
 
     public function getId(): int {
@@ -34,15 +39,11 @@ class User{
         return $this->email;
     }
 
-    public function getRoles(): array {
-        return $this->roles;
-    }
-
     public function isTeacher(): bool {
-        return in_array('teacher', $this->roles);
+        return $this->isTeacher;
     }
 
     public function isStudent(): bool {
-        return in_array('student', $this->roles);
+        return $this->isStudent;
     }
 }

@@ -1,5 +1,5 @@
 <?php
-require_once './DataAcccessLayer/Factories/AbstractRepositoriesFactory.php';
+require_once './DataAccessLayer/Factories/AbstractRepositoriesFactory.php';
 require_once './DataAccessLayer/MySQLImplementation/ClassLiveSessionRepository.php';
 require_once './DataAccessLayer/MySQLImplementation/CourseRepository.php';
 require_once './DataAccessLayer/MySQLImplementation/LessonRepository.php';
