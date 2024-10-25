@@ -11,7 +11,7 @@
             <fieldset class="form-group">
                 <label for="userName">Usuario</label>
                 <input type="text" class="form-control" id="userName" name="userName" 
-                        minlength="4"maxlength="12"required oninput="validateUser()" placeholder="Ingrese su usuario">
+                        minlength="4"maxlength="12"required onkeyup="validateUser()" placeholder="Ingrese su usuario">
                 <p class="alert alert-danger" id="userNameErrorMessage">El usuario debe contener entre 4 y 12 caracteres.</p>
             </fieldset>
 
@@ -19,7 +19,7 @@
             <fieldset class="form-group">
                 <label for="password">Password</label>
                 <input type="password" class="form-control" id="password" name="password" 
-                        minlength="6" maxlength="50" required oninput="validatePassword()"
+                        minlength="6" maxlength="50" required onkeyup="validatePassword()"
                         placeholder="Enter your password">
                 <p class="alert alert-danger" id="passwordErrorMessage">La contraseña debe tener entre 6 y 50 caracteres</p>
             </fieldset>

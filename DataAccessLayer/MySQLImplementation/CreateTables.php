@@ -1,6 +1,6 @@
 <?php
 
-$servername="192.168.1.81:3306";
+$servername="192.168.1.90:3306";
 $dbname="teachingsystemdb";
 $username="root";
 $password="";
@@ -11,7 +11,7 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 $sql = "CREATE TABLE IF NOT EXISTS Users(
     id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(30) NOT NULL,
-    password VARCHAR(30) NOT NULL,
+    password VARCHAR(100) NOT NULL,
     firstname VARCHAR(30) NOT NULL,
     lastname VARCHAR(30) NOT NULL,
     email VARCHAR(50),

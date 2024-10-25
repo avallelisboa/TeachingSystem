@@ -144,7 +144,7 @@ class SessionBL {
         $result = new ValidationResult(false,"");
 
         $userNameResult = $this->isUserNameValid($register->userName);
-        $nameResult = $this->isNameValid($register->name);
+        $nameResult = $this->isNameValid($register->firstName);
         $lastNameResult = $this->isLastNameValid($register->lastName);
         $emailResult = $this->isEmailValid($register->email);
         $passwordResult = $this->isPasswordValid($register->password);

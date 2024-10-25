@@ -8,7 +8,7 @@ class UserRepository implements IUserRepository{
     private $username;
     private $password;
     public function __construct(){
-        $this->servername="192.168.1.169";
+        $this->servername="192.168.1.90:3306";
         $this->dbname="teachingsystemdb";
         $this->username="root";
         $this->password="";
@@ -20,9 +20,9 @@ class UserRepository implements IUserRepository{
         $sql = "INSERT INTO Users(
                     username,password,firstname,lastname,email,isStudent,isTeacher
                 ) VALUES(
-                    ".$user->username.",".$user->password.",
-                    ".$user->firstname.",".$user->lastname.",
-                    ".$user->email.",".$user->isStuden.",".$user->isTeacher."
+                    \"".$user->username."\",\"".$user->password."\",
+                    \"".$user->firstname."\",\"".$user->lastname."\",
+                    \"".$user->email."\", \"".$user->isStuden."\", \"".$user->isTeacher."\"
                 )";
         $conn->query($sql);
         $conn->close();
@@ -32,7 +32,7 @@ class UserRepository implements IUserRepository{
 
         $sql = "SELECT email
                 FROM Users
-                WHERE email = ".$email;
+                WHERE email = \"".$email."\"";
         $result = $conn->query($sql);
 
         $exists = $result->num_rows > 0;
@@ -55,7 +55,7 @@ class UserRepository implements IUserRepository{
 
         $sql = "SELECT username
                 FROM Users
-                WHERE username = ".$username;
+                WHERE username = \"".$username."\"";
         $result = $conn->query($sql);
 
         return $result->fetch_assoc();
@@ -75,8 +75,8 @@ class UserRepository implements IUserRepository{
         $conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
 
         $sql = "UPDATE Users
-                SET password = ".$user->password.", firstname = ".$user->firstName.", 
-                lastname = ".$user->lastName.", email = ".$user->email.", 
+                SET password = \"".$user->password."\", firstname = \"".$user->firstName."\", 
+                lastname = \"".$user->lastName."\", email = \"".$user->email."\", 
                 isStudent = ".$user->isStudent.",isTeacher = ".$user->isTeacher."
                 WHERE id = ".$user->getId();
         $result = $conn->query($sql);
@@ -88,7 +88,7 @@ class UserRepository implements IUserRepository{
 
         $sql = "SELECT username
                 FROM Users
-                WHERE username = ".$username;
+                WHERE username = \"".$username."\"";
         $result = $conn->query($sql);
 
         $exists = $result->num_rows > 0;

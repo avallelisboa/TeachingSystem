@@ -94,7 +94,7 @@
         var submitFormButton = document.getElementById("submitFormButton");
         
         name.reportValidity();
-        if(name.validity.tooLong || name.validity.tooShort){
+        if(name.validity.tooLong || name.validity.tooShort || name.validity.patternMismatch){
             nameErrorMessageField.style.display = "block";
         }else {
             nameErrorMessageField.style.display = "none";
@@ -106,7 +106,7 @@
         var submitFormButton = document.getElementById("submitFormButton");
         
         lastName.reportValidity();
-        if(lastName.validity.tooLong || lastName.validity.tooShort){
+        if(lastName.validity.tooLong || lastName.validity.tooShort || lastName.validity.patternMismatch){
             lastNameErrorMessageField.style.display = "block";
         }else {
             lastNameErrorMessageField.style.display = "none";

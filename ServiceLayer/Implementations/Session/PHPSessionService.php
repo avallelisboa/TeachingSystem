@@ -15,17 +15,23 @@ class PHPSessionService implements ISessionService{
 
     public function register(Register $registerModel):ActionResult{
         $validationResult = SessionBL::GetInstance()->IsRegisterValid($registerModel);
-        $actionResult = new ActionResult($validationResult->isValid,$validationResult->message);
-        if($validationResult->isValid){
+        if(!($validationResult->isValid))
+            return new ActionResult($validationResult->isValid,$validationResult->message);
+        else{
             $user = new User(
                 0,$registerModel->userName,
                 password_hash($registerModel->password,PASSWORD_DEFAULT),
                 $registerModel->firstName,$registerModel->lastName,
                 $registerModel->email,true, false
             );
-            $this->userRepository->AddUser($user);
+            try{
+                $this->userRepository->AddUser($user);
+            }catch(Exception $ex){
+                //Todo implement logging
+                return new ActionResult(false, "Hubo un error en el servidor");
+            }
+            return new ActionResult($validationResult->isValid, "El usuario fue registrado correctamente");
         }
-        return $actionResult;
     }
     public function login($username, $password): ActionResult{
         $validationResult = SessionBL::GetInstance()->IsLoginValid($username, $password);
