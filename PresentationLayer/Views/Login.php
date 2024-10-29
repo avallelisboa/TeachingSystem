@@ -12,7 +12,7 @@
                 <label for="userName">Usuario</label>
                 <input type="text" class="form-control" id="userName" name="userName" 
                         minlength="4"maxlength="12"required onkeyup="validateUser()" placeholder="Ingrese su usuario">
-                <p class="alert alert-danger" id="userNameErrorMessage">El usuario debe contener entre 4 y 12 caracteres.</p>
+                <p class="alert alert-danger" id="userNameErrorMessage" style="display:none;">El usuario debe contener entre 4 y 12 caracteres.</p>
             </fieldset>
 
             <!-- Password -->
@@ -21,7 +21,7 @@
                 <input type="password" class="form-control" id="password" name="password" 
                         minlength="6" maxlength="50" required onkeyup="validatePassword()"
                         placeholder="Enter your password">
-                <p class="alert alert-danger" id="passwordErrorMessage">La contraseña debe tener entre 6 y 50 caracteres</p>
+                <p class="alert alert-danger" id="passwordErrorMessage" style="display:none;">La contraseña debe tener entre 6 y 50 caracteres</p>
             </fieldset>
 
             <!-- Submit Button -->
@@ -46,7 +46,7 @@
             var userName = document.getElementById("userName");
             var userNameErrorMessage = document.getElementById("userNameErrorMessage");
             userName.reportValidity();
-            if(userName.validity.tooLong || username.validity.tooShort()){
+            if(userName.validity.tooLong || userName.validity.tooShort){
                 userNameErrorMessage.dispaly = "block";
             }else{
                 userNameErrorMessage.display = "none";
@@ -56,7 +56,7 @@
             var password = document.getElementById("password");
             var passwordErrorMessage = document.getElementById("passwordErrorMessage");
             password.reportValidity();
-            if(password.validity.tooLong || password.validity.tooShort()){
+            if(password.validity.tooLong || password.validity.tooShort){
                 passwordErrorMessage.display = "block";
             }else{
                 passwordErrorMessage.dsiplay = "none";

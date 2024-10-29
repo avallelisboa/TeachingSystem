@@ -6,9 +6,9 @@ function Login($request,$response,$service, $app){
     setcookie("loginErrorMessage",null,time() - 3600);
     $SESSION_SERVICE = $_ENV['SESSION_SERVICE'];
     $sessionService = SessionServiceFactory::getSessionService('php');
-    $email = $request->paramsPost()->email;
+    $userName = $request->paramsPost()->userName;
     $password = $request->paramsPost()->password;
-    $result = $sessionService->login($email,$password);
+    $result = $sessionService->login($userName,$password);
     if($result->isValid){
         $response->redirect('/main')->send();
     }else{

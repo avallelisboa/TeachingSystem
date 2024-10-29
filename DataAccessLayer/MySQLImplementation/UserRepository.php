@@ -8,7 +8,7 @@ class UserRepository implements IUserRepository{
     private $username;
     private $password;
     public function __construct(){
-        $this->servername="192.168.1.90:3306";
+        $this->servername="192.168.1.98:3306";
         $this->dbname="teachingsystemdb";
         $this->username="root";
         $this->password="";
@@ -53,7 +53,7 @@ class UserRepository implements IUserRepository{
     function GetUserByUserName($username){
         $conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
 
-        $sql = "SELECT username
+        $sql = "SELECT *
                 FROM Users
                 WHERE username = \"".$username."\"";
         $result = $conn->query($sql);

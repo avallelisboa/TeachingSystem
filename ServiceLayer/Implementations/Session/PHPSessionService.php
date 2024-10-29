@@ -43,6 +43,7 @@ class PHPSessionService implements ISessionService{
         return $actionResult;
     }
     public function isLogged():bool{
+        session_start();
         return isset($_SESSION["username"]);
     }
     public function logout(){

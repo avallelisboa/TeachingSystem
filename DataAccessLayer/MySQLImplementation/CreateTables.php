@@ -1,6 +1,6 @@
 <?php
 
-$servername="192.168.1.90:3306";
+$servername="192.168.1.98:3306";
 $dbname="teachingsystemdb";
 $username="root";
 $password="";

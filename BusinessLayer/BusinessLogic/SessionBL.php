@@ -169,7 +169,9 @@ class SessionBL {
     }
     private function isPasswordCorrect($theUserName, $thePassword):bool{
         $user = $this->_userRepository->GetUserByUserName($theUserName);
-        return password_verify($thePassword, $user->getPassword());
+        $password = $user["password"];
+        $result = password_verify($thePassword, $password);
+        return $result;
     }
     public function IsLoginValid($theUserName, $thePassword):ValidationResult{
         $result = new ValidationResult(false,"");
