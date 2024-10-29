@@ -1,1 +1,26 @@
 vendor
+# UserPage
+# Logs
+PresentationLayer/Views/UserPage/logs
+PresentationLayer/Views/UserPage/*.log
+PresentationLayer/Views/UserPage/npm-debug.log*
+PresentationLayer/Views/UserPage/yarn-debug.log*
+PresentationLayer/Views/UserPage/yarn-error.log*
+PresentationLayer/Views/UserPage/pnpm-debug.log*
+PresentationLayer/Views/UserPage/lerna-debug.log*
+
+PresentationLayer/Views/UserPage/node_modules
+PresentationLayer/Views/UserPage/dist
+PresentationLayer/Views/UserPage/dist-ssr
+PresentationLayer/Views/UserPage/*.local
+
+# Editor directories and files
+PresentationLayer/Views/UserPage/.vscode/*
+PresentationLayer/Views/UserPage/!.vscode/extensions.json
+PresentationLayer/Views/UserPage/.idea
+PresentationLayer/Views/UserPage/.DS_Store
+PresentationLayer/Views/UserPage/*.suo
+PresentationLayer/Views/UserPage/*.ntvs*
+PresentationLayer/Views/UserPage/*.njsproj
+PresentationLayer/Views/UserPage/*.sln
+PresentationLayer/Views/UserPage/*.sw?
