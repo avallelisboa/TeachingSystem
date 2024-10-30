@@ -1,0 +1,37 @@
+main{
+    nav{
+        width: 10%;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        aside{
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            height: 90%;
+            ul{
+                height: 100%;
+                display: flex;
+                flex-wrap: wrap;
+                flex-direction: column;
+                li{
+                    display: block;
+                    list-style: none;
+                    border: 2px solid gray;
+                    background-color: gray;
+                    border-radius: 10px;
+                    text-align: center;
+                    a{
+                        text-align: center;
+                        color:white;
+                        font-weight: bold;
+                        text-decoration: none;
+                    }
+                    padding: 10px;
+                    margin-top: 10px;
+                    margin-bottom: 10px;
+                }
+            }
+        }
+    }
+}
