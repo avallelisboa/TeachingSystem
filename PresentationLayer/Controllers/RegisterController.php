@@ -1,5 +1,5 @@
 <?php
-
+require_once './ServiceLayer/Factories/RegisterServiceFactory.php';
 function GetRegisterScreen($request,$response,$service, $app){
     setcookie("registerErrorMessage",null,time() - 3600);
     setcookie("registerResultMessage",null,time() - 3600);
@@ -9,8 +9,8 @@ function Register($request, $response,$service, $app){
     setcookie("registerErrorMessage",null,time() - 3600);
     setcookie("registerResultMessage",null,time() - 3600);
 
-    $SESSION_SERVICE = $_ENV['SESSION_SERVICE'];
-    $sessionService = SessionServiceFactory::getSessionService('php');
+    $REGISTER_SERVICE = $_ENV['REGISTER_SERVICE'];
+    $registerService = RegisterServiceFactory::getRegisterService($REGISTER_SERVICE);
 
     $userName = $request->paramsPost()->userName;
     $firstName = $request->paramsPost()->firstName;
@@ -19,7 +19,7 @@ function Register($request, $response,$service, $app){
     $password = $request->paramsPost()->password;
     $registerModel = new Register($userName,$firstName,$lastName,$email,$password);
 
-    $result = $sessionService->register($registerModel);
+    $result = $registerService->register($registerModel);
     if($result->isValid){
         setcookie("registerResultMessage",$result->message,time() +86400);
         $response->redirect('/login')->send();

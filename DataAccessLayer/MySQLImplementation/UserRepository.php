@@ -1,98 +1,125 @@
 <?php
 require_once './DataAccessLayer/Interfaces/IUserRepository.php';
+require_once './DataAccessLayer/MySQLImplementation/ConnectionFactory.php';
+require_once './DataAccessLayer/MySQLImplementation/MySqlTools.php';
 require_once './DataAccessLayer/MySQLImplementation/CreateTables.php';
 
 class UserRepository implements IUserRepository{
-    private $servername;
-    private $dbname;
-    private $username;
-    private $password;
-    public function __construct(){
-        $this->servername="192.168.1.98:3306";
-        $this->dbname="teachingsystemdb";
-        $this->username="root";
-        $this->password="";
-    }
-
+ 
     function AddUser($user){
-        $conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
-
+        $conn = ConnectionFactory::GetInstance()->newConnection();
         $sql = "INSERT INTO Users(
-                    username,password,firstname,lastname,email,isStudent,isTeacher
-                ) VALUES(
-                    \"".$user->username."\",\"".$user->password."\",
-                    \"".$user->firstname."\",\"".$user->lastname."\",
-                    \"".$user->email."\", \"".$user->isStuden."\", \"".$user->isTeacher."\"
-                )";
-        $conn->query($sql);
-        $conn->close();
+            username,password,firstname,lastname,email,isStudent,isTeacher
+        ) VALUES(?,?,?,?,?,?,?)";
+        $params = array(
+            "sssssii",
+            array(
+                $user->username,
+                $user->password,
+                $user->firstName,
+                $user->lastName,
+                $user->email,
+                $user->isStudent,
+                $user->isTeacher,
+            )
+        );
+        MySqlTools::RunQuery($conn, $sql, $params);
+        ConnectionFactory::GetInstance()->closeConnection($conn);
     }
     function EmailExists($email):bool{
-        $conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
+        $conn = ConnectionFactory::GetInstance()->newConnection();
 
         $sql = "SELECT email
                 FROM Users
-                WHERE email = \"".$email."\"";
-        $result = $conn->query($sql);
+                WHERE email = ?";
+        $result = MySqlTools::RunQueryAndGetResult($conn,$sql,array("s", array($email)));
 
         $exists = $result->num_rows > 0;
-        $conn->close();
+        
+        ConnectionFactory::GetInstance()->closeConnection($conn);
 
         return $exists;
     }
     function GetUserByEmail($email){
-        $conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
+        $conn = ConnectionFactory::GetInstance()->newConnection();
 
         $sql = "SELECT email
                 FROM Users
-                WHERE email = ".$email;
-        $result = $conn->query($sql);
+                WHERE email = ?";
+        $result = MySqlTools::RunQueryAndGetResult($conn,$sql,array("s", array($email)));
+        $user = $result->fetch_assoc()[0];
 
-        return $result->fetch_assoc();
+        ConnectionFactory::GetInstance()->closeConnection($conn);
+
+        return $user;
     }
     function GetUserByUserName($username){
-        $conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
+        $conn = ConnectionFactory::GetInstance()->newConnection();
 
         $sql = "SELECT *
                 FROM Users
-                WHERE username = \"".$username."\"";
-        $result = $conn->query($sql);
+                WHERE username = ?";
+        
+        $result = MySqlTools::RunQueryAndGetResult($conn,$sql,array("s",array($username)));
+        $user = $result->fetch_assoc();
 
-        return $result->fetch_assoc();
+        ConnectionFactory::GetInstance()->closeConnection($conn);
+
+        return $user;
     }
     function RemoveUserById($id){
-        $conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
+        $conn = ConnectionFactory::GetInstance()->newConnection();
         $sql = "DELETE
                 FROM Users
-                WHERE ID = ".$id;
-        $result = $conn->query($sql);
+                WHERE ID = ?";
+        $result = MySqlTools::RunQueryAndGetResult($conn, $sql,array("i", array($id)));
 
-        $conn->close();
+        $wasRemoved = $result->affected_rows > 0;
+
+        ConnectionFactory::GetInstance()->closeConnection($conn);
         
-        return $result;
+        return $wasRemoved;
     }
     function UpdateUser($user){
-        $conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
+        $conn = ConnectionFactory::GetInstance()->newConnection();
 
         $sql = "UPDATE Users
-                SET password = \"".$user->password."\", firstname = \"".$user->firstName."\", 
-                lastname = \"".$user->lastName."\", email = \"".$user->email."\", 
-                isStudent = ".$user->isStudent.",isTeacher = ".$user->isTeacher."
-                WHERE id = ".$user->getId();
-        $result = $conn->query($sql);
+                SET password = ?, firstname = ?, 
+                lastname = ?, email = ?, 
+                isStudent = ?,isTeacher = ?
+                WHERE id = ?";
+        
+        $params = array(
+            "ssssbbi",
+            array(
+                $user->password,
+                $user->firstName,
+                $user->lastName,
+                $user->email,
+                $user->isStudent,
+                $user->isTeacher,
+                $user->getId()
+            )
+        );
 
-        return $result->num_rows > 0;
+        $result = MySqlTools::RunQueryAndGetResult($conn, $sql, $params);
+        $wasUpdated = $result->num_rows > 0;
+
+        ConnectionFactory::GetInstance()->closeConnection($conn);
+
+        return $wasUpdated;
     }
     function UserNameExists($username):bool{
-        $conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
+        $conn = ConnectionFactory::GetInstance()->newConnection();
 
         $sql = "SELECT username
                 FROM Users
-                WHERE username = \"".$username."\"";
-        $result = $conn->query($sql);
+                WHERE username = ?";
 
+        $result = MySqlTools::RunQueryAndGetResult($conn, $sql,array("s",array($username)));
         $exists = $result->num_rows > 0;
-        $conn->close();
+
+        ConnectionFactory::GetInstance()->closeConnection($conn);
         
         return $exists;
     }

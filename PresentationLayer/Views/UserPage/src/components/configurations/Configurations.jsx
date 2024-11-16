@@ -1,17 +1,17 @@
 import React from 'react'
 import NavBar from '../navbar/NavBar'
 
-const Teacher = () => {
+const Configurations = () => {
   return (
     <>
       <NavBar/>
       <section>
         <article>
-          <h2>Teacher</h2>
+          <h2>Configurations</h2>
         </article>
       </section>
     </>
   )
 }
 
-export default Teacher
+export default Configurations

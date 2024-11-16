@@ -5,7 +5,7 @@ function GetLoginScreen($request,$response,$service, $app){
 function Login($request,$response,$service, $app){
     setcookie("loginErrorMessage",null,time() - 3600);
     $SESSION_SERVICE = $_ENV['SESSION_SERVICE'];
-    $sessionService = SessionServiceFactory::getSessionService('php');
+    $sessionService = SessionServiceFactory::getSessionService($SESSION_SERVICE);
     $userName = $request->paramsPost()->userName;
     $password = $request->paramsPost()->password;
     $result = $sessionService->login($userName,$password);

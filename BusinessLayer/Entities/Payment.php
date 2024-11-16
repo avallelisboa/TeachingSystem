@@ -1,17 +1,23 @@
 <?php
 class Payment {
     private int $id;
-    private User $payer;   // Typically the student
-    private User $payee;   // Typically the teacher
-    private float $amount;
-    private float $platformFeePercentage; // Platform fee percentage
+    public User $payer;
+    public User $collector;
+    public float $amount;
+    public string $currency;
+    public string $method;
+    public float $platformFeePercentage;
+    public DateTime $paymentDate;
 
-    public function __construct(int $id, User $payer, User $payee, float $amount, float $platformFeePercentage) {
+    public function __construct(int $id, User $payer, User $collector, float $amount, string $currency, string $method, float $platformFeePercentage) {
         $this->id = $id;
         $this->payer = $payer;
-        $this->payee = $payee;
+        $this->collector = $collector;
         $this->amount = $amount;
+        $this->currency = $currency;
+        $this->method = $method;
         $this->platformFeePercentage = $platformFeePercentage;
+        $this->paymentDate = new DateTime();
     }
 
     public function calculatePlatformFee(): float {
@@ -28,15 +34,7 @@ class Payment {
         return true;
     }
 
-    public function getPayer(): User {
-        return $this->payer;
-    }
-
-    public function getPayee(): User {
-        return $this->payee;
-    }
-
-    public function getAmount(): float {
-        return $this->amount;
+    public function getId():int{
+        return $this->id;
     }
 }
