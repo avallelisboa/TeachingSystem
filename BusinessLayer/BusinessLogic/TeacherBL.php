@@ -97,5 +97,12 @@ class TeacherBL{
         $user = $this->_teacherRepository->GetTeacherById($userId);
         return count($user) > 0;
     }
-
+    public function GetTeachersBySubjectId($subjectId, $numberOfResults, $pageNumber){
+        $teachers = $this->_teacherRepository->GetTeachersBySubjectId($subjectId, $numberOfResults, $pageNumber);
+        return $teachers;
+    }
+    public function GetTeachersBySearchWords($searchWords, $numberOfResults, $pageNumber){
+        $teachers = $this->_teacherRepository->GetTeachersBySearchWords($searchWords, $numberOfResults, $pageNumber);
+        return $teachers;
+    }
 }
