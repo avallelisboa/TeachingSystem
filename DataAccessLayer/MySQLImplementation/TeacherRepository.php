@@ -1,6 +1,7 @@
 <?php
 require_once './DataAccessLayer/Interfaces/ITeacherRepository.php';
-
+require_once './DataAccessLayer/MySQLImplementation/ConnectionFactory.php';
+require_once './DataAccessLayer/MySQLImplementation/MySqlTools.php';
 
 class TeacherRepository implements ITeacherRepository{
     public function AddTeacher(AddTeacher $theAddTeacherDTO){

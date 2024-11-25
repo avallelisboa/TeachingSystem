@@ -5,5 +5,6 @@ interface ILessonRepository{
     public function DeleteLesson($lesson);
     public function UpdateLesson($lesson);
     public function GetLessonById($id);
-    public function GetLessonsByTeacherIdBetweenDates($teacheId, $startDate, $endDate);
+    public function GetLessonsByTeacherIdBetweenDates($teacherId, $startDate, $endDate);
+    public function GetConflictingLessonsCount($teacherId, $startDate, $endDate);
 }
