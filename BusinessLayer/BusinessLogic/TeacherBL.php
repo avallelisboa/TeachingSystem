@@ -93,4 +93,9 @@ class TeacherBL{
         return $validationResult;
     }
 
+    public function IsUserATeacher($userId):bool{
+        $user = $this->_teacherRepository->GetTeacherById($userId);
+        return count($user) > 0;
+    }
+
 }
