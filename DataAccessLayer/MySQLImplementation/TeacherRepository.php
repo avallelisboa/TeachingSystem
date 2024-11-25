@@ -39,6 +39,22 @@ class TeacherRepository implements ITeacherRepository{
         MySqlTools::RunQuery($conn, $sql, $params);
         ConnectionFactory::GetInstance()->closeConnection($conn);
     }
+    public function GetTeacherById($userId){
+        $conn = ConnectionFactory::GetInstance()->newConnection();
+        $sql = "SELECT * FROM TeacherProfiles WHERE userId = ?";
+        $params = array(
+            'i', array(
+                $userId
+            )
+        );
+
+        $result = MySqlTools::RunQueryAndGetResult($conn, $sql, $params);
+        $teacher = $result->fetch_assoc();
+
+        ConnectionFactory::GetInstance()->closeConnection($conn);
+        
+        return $teacher;
+    }
     public function GetTeachersBySubjectId($subjectId, $numberOfResults, $pageNumber){
         $conn = ConnectionFactory::GetInstance()->newConnection();
 
@@ -86,6 +102,7 @@ class TeacherRepository implements ITeacherRepository{
 
         return $teachers;
     }
+
     public function IsTeacherScheduleSet($userId, $dayOfWeek){
         $conn = ConnectionFactory::GetInstance()->newConnection();
 
