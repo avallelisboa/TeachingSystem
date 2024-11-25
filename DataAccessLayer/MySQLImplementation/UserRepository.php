@@ -9,8 +9,8 @@ class UserRepository implements IUserRepository{
     function AddUser($user){
         $conn = ConnectionFactory::GetInstance()->newConnection();
         $sql = "INSERT INTO Users(
-            username,password,firstname,lastname,email,isStudent,isTeacher
-        ) VALUES(?,?,?,?,?,?,?)";
+            username,password,firstname,lastname,email, country,isStudent,isTeacher
+        ) VALUES(?,?,?,?,?,?,?,?)";
         $params = array(
             "sssssii",
             array(
@@ -19,6 +19,7 @@ class UserRepository implements IUserRepository{
                 $user->firstName,
                 $user->lastName,
                 $user->email,
+                $user->country,
                 $user->isStudent,
                 $user->isTeacher,
             )

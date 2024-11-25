@@ -16,8 +16,10 @@ function Register($request, $response,$service, $app){
     $firstName = $request->paramsPost()->firstName;
     $lastName = $request->paramsPost()->lastName;
     $email = $request->paramsPost()->email;
+    //TODO receive country from POST
+    $country = "Uruguay";
     $password = $request->paramsPost()->password;
-    $registerModel = new Register($userName,$firstName,$lastName,$email,$password);
+    $registerModel = new Register($userName,$firstName,$lastName,$email,$country,$password);
 
     $result = $registerService->register($registerModel);
     if($result->isValid){

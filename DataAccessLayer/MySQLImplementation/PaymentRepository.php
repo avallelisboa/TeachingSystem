@@ -6,7 +6,7 @@ require_once './DataAccessLayer/MySQLImplementation/MySqlTools.php';
 class PaymentRepository implements IPaymentRepository{
     function AddPayment($payment){
         $conn = ConnectionFactory::GetInstance()->newConnection();
-        $query = "INSERT INTO PAYMENTS(
+        $query = "INSERT INTO Payments(
             payerId, collectorId, ammount, currency, method, paymentDate
         ) VALUES(?,?,?,?,?,?)";
         $params= array(
@@ -25,7 +25,12 @@ class PaymentRepository implements IPaymentRepository{
         ConnectionFactory::GetInstance()->closeConnection($conn);
     }
     function GetPaymentById($id){
-
+        $conn = ConnectionFactory::GetInstance()->newConnection();
+        $query = "SELECT * FROM PAYMENTS WHERE payerId = ?";
+        $result = MySqlTools::RunQueryAndGetResult($conn,$query, array("i", array($id)));
+        $payment = $result->fetch_assoc()[0];
+        ConnectionFactory::GetInstance()->closeConnection($conn);
+        return $payment;
     }
     function GetReceivedPaymentByUserIdBetweenDates($userId, $startDate, $endDate){
 

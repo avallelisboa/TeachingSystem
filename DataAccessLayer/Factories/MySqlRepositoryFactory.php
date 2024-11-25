@@ -6,15 +6,19 @@ require_once './DataAccessLayer/MySQLImplementation/LessonRepository.php';
 require_once './DataAccessLayer/MySQLImplementation/PaymentRepository.php';
 require_once './DataAccessLayer/MySQLImplementation/SubjectRepository.php';
 require_once './DataAccessLayer/MySQLImplementation/UserRepository.php';
+require_once './DataAccessLayer/MySQLImplementation/TeacherRepository.php';
+require_once './DataAccessLayer/MySQLImplementation/CurrencyRepository.php';
 
 class MySqlRepositoryFactory extends AbstractRepositoriesFactory{
     private static $_instance;
     private static $_classLiveSessionRepository;
     private static $_courseRepository;
+    private static $_currencyRepository;
     private static $_lessonRepository;
     private static $_paymentRepository;
     private static $_subjectRepository;
     private static $_userRepository;
+    private static $_teacherRepository;
     private function __construct(){}
     public static function GetInstance(){
         if(self::$_instance == null)
@@ -33,6 +37,12 @@ class MySqlRepositoryFactory extends AbstractRepositoriesFactory{
             self::$_courseRepository = new CourseRepository();
 
         return self::$_courseRepository;
+    }
+    public function MakeCurrencyRepository():ICurrencyRepository{
+        if(self::$_currencyRepository == null)
+            self::$_currencyRepository = new CurrencyRepository();
+
+        return self::$_currencyRepository;
     }
     public function MakeLessonRepository():ILessonRepository{
         if(self::$_lessonRepository == null)
@@ -57,5 +67,11 @@ class MySqlRepositoryFactory extends AbstractRepositoriesFactory{
             self::$_userRepository = new UserRepository();
 
         return self::$_userRepository;
+    }
+    public function MakeTeacherRepository():ITeacherRepository{
+        if(self::$_teacherRepository == null)
+            self::$_teacherRepository = new TeacherRepository();
+
+        return self::$_teacherRepository;
     }
 }

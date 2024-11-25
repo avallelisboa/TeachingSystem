@@ -23,7 +23,7 @@ class RegisterService implements IRegisterService{
                 0,$registerModel->userName,
                 password_hash($registerModel->password,PASSWORD_DEFAULT),
                 $registerModel->firstName,$registerModel->lastName,
-                $registerModel->email,true, false
+                $registerModel->email,"",true, false
             );
             try{
                 $this->userRepository->AddUser($user);

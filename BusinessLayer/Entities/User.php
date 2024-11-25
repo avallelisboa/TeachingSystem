@@ -6,17 +6,19 @@ class User{
     public string $firstName;
     public string $lastName;
     public string $email;
+    public string $country;
     public bool $isStudent;
     public bool $isTeacher;
 
     
-    public function __construct(int $id, string $userName, string $password, string $firstName, string $lastName, string $email, bool $isStudent, bool $isTeacher) {
+    public function __construct(int $id, string $userName, string $password, string $firstName, string $lastName, string $email, string $country, bool $isStudent, bool $isTeacher) {
         $this->id = $id;
         $this->username = $userName;
         $this->password = $password;
         $this->firstName = $firstName;
         $this->lastName = $lastName;
         $this->email = $email;
+        $this->country = $country;
         $this->isStudent = $isStudent;
         $this->isTeacher = $isTeacher;
     }
