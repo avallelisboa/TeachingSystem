@@ -1,6 +1,6 @@
 <?php
-require_once './DataAccessLayer/DTOs/AddTeacher.php';
-require_once './DataAccessLayer/DTOs/UpdateTeacher.php';
+require_once './DataAccessLayer/DTOs/Teacher/AddTeacher.php';
+require_once './DataAccessLayer/DTOs/Teacher/UpdateTeacher.php';
 interface ITeacherRepository{
     public function AddTeacher(AddTeacher $theAddTeacherDTO);
     public function UpdateTeacher(UpdateTeacher $theUpdateTeacher);
