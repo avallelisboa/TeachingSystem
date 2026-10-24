@@ -10,11 +10,11 @@ $con = new mysqli($servername, $username, $password, $dbname);
 
 $sql = "CREATE TABLE IF NOT EXISTS Users(
     id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(30) NOT NULL,
-    password VARCHAR(100) NOT NULL,
+    username VARCHAR(30) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
     firstname VARCHAR(30) NOT NULL,
     lastname VARCHAR(30) NOT NULL,
-    email VARCHAR(50) NOT NULL,
+    email VARCHAR(50) NOT NULL UNIQUE,
     country VARCHAR(30) NOT NULL DEFAULT 'Uruguay',
     isStudent BIT(1) NOT NULL DEFAULT 1,
     isTeacher BIT(1) NOT NULL DEFAULT 0
@@ -32,7 +32,7 @@ $sql = "CREATE TABLE IF NOT EXISTS Ratings(
     raterStudentId INT(6) UNSIGNED NOT NULL,
     rate TINYINT(1) UNSIGNED NOT NULL CHECK (rate IN (1, 2, 3, 4, 5)),
     comment VARCHAR(200),
-    rateDate DATETIME,
+    rateDate DATETIME NOT NULL,
     PRIMARY KEY (ratedTeacherId, raterStudentId, rateDate),
     FOREIGN KEY (ratedTeacherId) REFERENCES Users(id),
     FOREIGN KEY (raterStudentId) REFERENCES Users(id)
@@ -40,7 +40,7 @@ $sql = "CREATE TABLE IF NOT EXISTS Ratings(
 $con->query($sql);
 $sql = "CREATE TABLE IF NOT EXISTS Languages(
     languageId INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    languageName VARCHAR(30) NOT NULL DEFAULT 'Uruguay'
+    languageName VARCHAR(30) NOT NULL DEFAULT 'Español'
 )";
 $con->query($sql);
 
@@ -62,10 +62,10 @@ $con->query($sql);
 $sql="CREATE TABLE IF NOT EXISTS TeacherProfiles(
     userId INT(6) UNSIGNED PRIMARY KEY,
     hourlyRate DECIMAL(10,2),
-    currencyId INT(3),
+    currencyId INT(3) UNSIGNED,
     description VARCHAR(300),
     FOREIGN KEY(userId) REFERENCES Users(id),
-    FOREIGN KEY(currencyId) REFERENCES Curencies(id)
+    FOREIGN KEY(currencyId) REFERENCES Currencies(id)
 ) ENGINE=InnoDB";
 $con->query($sql);
 
@@ -73,18 +73,25 @@ $sql = "CREATE TABLE IF NOT EXISTS Teaches(
     userId INT(6) UNSIGNED NOT NULL,
     subjectId INT(6) UNSIGNED NOT NULL,
     PRIMARY KEY (userId, subjectId),
-    FOREIGN KEY (userId) REFERENCES TeacherProfile(id),
+    FOREIGN KEY (userId) REFERENCES TeacherProfiles(userId),
     FOREIGN KEY (subjectId) REFERENCES Subjects(id)
 ) ENGINE=InnoDB";
 $con->query($sql);
 
-$sql="CREATE TABLE IF NOT EXISTS TeacherSchedules(
+$sql = "CREATE TABLE IF NOT EXISTS TeacherSchedules (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     teacherId INT(6) UNSIGNED NOT NULL,
-    dayOfWeek CHAR(3) CHECK(dayOfWeek in ('MON', 'TUE', 'WED', 'THU', 'FRI','SAT', 'SUNDAY'));
+    dayOfWeek CHAR(3) NOT NULL
+        CHECK (dayOfWeek IN
+            ('MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN')),
     startTime TIME NOT NULL,
     endTime TIME NOT NULL,
-    PRIMARY KEY(teacherId, dayOfWeek),
-    FOREIGN KEY(teacherId) REFERENCES Users(id)
+
+    CHECK (startTime < endTime),
+    UNIQUE (teacherId, dayOfWeek, startTime, endTime),
+
+    FOREIGN KEY (teacherId)
+        REFERENCES TeacherProfiles(userId)
 ) ENGINE=InnoDB";
 $con->query($sql);
 
@@ -108,7 +115,7 @@ $sql = "CREATE TABLE IF NOT EXISTS Payments(
     payerId INT(6) UNSIGNED NOT NULL,
     collectorId INT(6) UNSIGNED NOT NULL,
     amount DECIMAL(10,2) NOT NULL,
-    currencyId INT(3) NOT NULL,
+    currencyId INT(3) UNSIGNED NOT NULL,
     method VARCHAR(30),
     paymentDate DATETIME NOT NULL,
     wasRefunded BIT(1) DEFAULT 0,
