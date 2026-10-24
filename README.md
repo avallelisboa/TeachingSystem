@@ -2,6 +2,9 @@
 
 ## Requirements
 - PHP
+  - php-mysql
+  - php-xdebug
+- Git
 - Composer
 - MySQL
 - Docker for running MySQL
