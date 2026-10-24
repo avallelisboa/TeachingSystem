@@ -23,9 +23,26 @@
 ```
   composer install
 ```
+- Donwload node packages
+```
+  npm install
+```
 - Setup the docker container for the DB running this command
 ```
   docker compose up
+```
+## Start the development environment
+- Start docker container
+```
+  sudo docker start mysqlcontainer
+```
+- Start user ui (the UI runs on http://localhost:3000/app/)
+```
+  npm run dev
+```
+- Start application
+```
+  php -S localhost:8000
 ```
 ## Docker main commands
 - Listing all active containers
