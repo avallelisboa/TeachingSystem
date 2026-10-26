@@ -1,6 +1,8 @@
 $liheight: 80px;
+
 @media(max-width:991px){
     main{
+        padding: 0px;
         nav{
             width: 100%;
             top: 0;
@@ -17,7 +19,7 @@ $liheight: 80px;
 @media(min-width:992px){
     main{
         nav{
-            width: 15%;
+            width: 10%;
             height:100%;
             left: 0;
             flex-direction: column !important;

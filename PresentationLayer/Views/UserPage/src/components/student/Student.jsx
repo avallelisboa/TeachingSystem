@@ -4,10 +4,9 @@ import NavBar from '../navbar/NavBar'
 const Student = () => {
   return (
     <>
-      <NavBar/>
       <section>
         <article>
-          <h2>Student</h2>
+          <h2>Panel de estudiante</h2>
         </article>
       </section>
     </>

@@ -4,13 +4,17 @@ import UserMainMenu from './components/mainmenu/UserMainMenu'
 import Student from './components/student/Student'
 import Teacher from './components/teacher/Teacher'
 import Configurations from './components/configurations/Configurations';
+import Searcher from './components/searcher/Searcher'
+import NavBar from './components/navbar/NavBar'
 
 function App() {
   return (
     <BrowserRouter basename='/app'>
+      <NavBar/>
       <Routes>
         <Route path="*" element={<UserMainMenu/>}/>
         <Route path="/" element={<UserMainMenu/>}/>
+        <Route path="/searcher" element={<Searcher/>}/>
         <Route path="/student" element={<Student/>}/>
         <Route path='/teacher' element={<Teacher/>}/>
         <Route path='/configurations' element={<Configurations/>}/>

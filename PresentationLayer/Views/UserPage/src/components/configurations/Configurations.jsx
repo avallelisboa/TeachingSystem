@@ -4,10 +4,9 @@ import NavBar from '../navbar/NavBar'
 const Configurations = () => {
   return (
     <>
-      <NavBar/>
       <section>
         <article>
-          <h2>Configurations</h2>
+          <h2>Configuraciones</h2>
         </article>
       </section>
     </>
