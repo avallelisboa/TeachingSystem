@@ -12,7 +12,7 @@ class UserRepository implements IUserRepository{
             username,password,firstname,lastname,email, country,isStudent,isTeacher
         ) VALUES(?,?,?,?,?,?,?,?)";
         $params = array(
-            "sssssii",
+            "ssssssii",
             array(
                 $user->username,
                 $user->password,
