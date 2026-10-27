@@ -1,5 +1,3 @@
-import React from 'react'
-import NavBar from '../navbar/NavBar'
 
 const Student = () => {
   return (

@@ -1,8 +1,7 @@
-import React from 'react'
-import NavBar from '../navbar/NavBar'
+import { useState } from 'react'
 
 const Searcher = () => {
-    const [isTherePriceRange, setIsTherePriceRange] = React.useState(false);
+    const [isTherePriceRange, setIsTherePriceRange] = useState(false);
 
     const search = (e) => {
         e.preventDefault();
@@ -74,7 +73,6 @@ const Searcher = () => {
                                 </>
                                 :
                                 null
-
                         }
                         <fieldset>
                             <input className="btn btn-primary" type="submit" value="Buscar"/>
